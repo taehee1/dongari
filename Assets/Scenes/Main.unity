@@ -848,7 +848,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &1738908017
 Animator:
   serializedVersion: 5
@@ -882,7 +882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28f5451aed496847b0d0b4e2e0a54fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 5
+  jumpPower: 10
   moveSpeed: 5
   clip:
   - {fileID: 7400000, guid: 721920df8dacbbb458a142c0f0df9460, type: 2}

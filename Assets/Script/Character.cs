@@ -9,18 +9,24 @@ public class Character : MonoBehaviour
     public int jumpPower; //점프높이
     public float moveSpeed = 5f; // 이동 속도
     public AnimationClip[] clip;
+    public static bool jumpcool = true;
 
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
     void Update()
     {
         //Space 키를 누르면 점프
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = Vector2.up * jumpPower;
+            if (jumpcool == true)
+            {
+                rb.velocity = Vector2.up * jumpPower;
+                jumpcool = false;
+            }
 
         }
 
