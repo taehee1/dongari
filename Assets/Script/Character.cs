@@ -6,11 +6,11 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     Rigidbody2D rb;
+    public Animator animation;
     public int jumpPower; //점프높이
     public float moveSpeed = 5f; // 이동 속도
     public AnimationClip[] clip;
-    public static bool jumpcool = true;
-
+    public static int jumpcool = 2;
 
     private void Start()
     {
@@ -22,10 +22,10 @@ public class Character : MonoBehaviour
         //Space 키를 누르면 점프
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (jumpcool == true)
+            if (jumpcool >= 1)
             {
                 rb.velocity = Vector2.up * jumpPower;
-                jumpcool = false;
+                jumpcool--;
             }
 
         }
