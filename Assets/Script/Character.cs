@@ -6,11 +6,9 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     Rigidbody2D rb;
-    public Animator animation;
     public int jumpPower; //점프높이
     public float moveSpeed = 5f; // 이동 속도
-    public AnimationClip[] clip;
-    public static int jumpcool = 2;
+    public static int jumpcool = 2; //점프제한
 
     private void Start()
     {
