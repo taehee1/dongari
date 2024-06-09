@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [Header("이동")]
-    [SerializeField] private Rigidbody2D rb;
     public int jumpPower; //점프높이
     public float speed = 5f; // 이동 속도
     private float horizontal;
@@ -16,22 +15,35 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     [Header("대쉬")]
-    [Range(0f, 100f)]
-    public float dashPower = 20f;
+    public float dashPower = 100f;
     public float dashTime = 0.2f;
     public float dashCooldown = 1f;
 
     private bool canDash = true;
     private bool isDashing;
 
-    [SerializeField] private TrailRenderer tr;
+    [Header("공격")]
+    public GameObject hitScan;
 
+    private bool isAttacking = false;
 
+    Rigidbody2D rb;
 
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
+        if (isAttacking == false)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
+        }
+        else
+        {
+            horizontal = 0f;
+        }
 
         Flip();
 
@@ -40,21 +52,22 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && isAttacking == false)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 0f)
+        if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 0f && isAttacking == false)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && canDash)
+        if (Input.GetKeyDown(KeyCode.Q) && canDash && isAttacking == false)
         {
             StartCoroutine(Dash());
         }
-        
+
+        Attack();
     }
 
     private void FixedUpdate()
@@ -91,12 +104,26 @@ public class PlayerMovement : MonoBehaviour
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0;
         rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
-        tr.emitting = true;
         yield return new WaitForSeconds(dashTime);
-        tr.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    private void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.Z) && isAttacking == false)
+        {
+            isAttacking = true;
+            hitScan.SetActive(true);
+            Invoke("AttackDone", 0.5f);
+        }
+    }
+
+    private void AttackDone()
+    {
+        isAttacking = false;
+        hitScan.SetActive(false);
     }
 }
