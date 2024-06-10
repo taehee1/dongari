@@ -6,10 +6,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("이동")]
-    public int jumpPower; //점프높이
+    public int jumpPower; // 점프 높이
     public float speed = 5f; // 이동 속도
+    public static bool isFacingRight = true;
     private float horizontal;
-    private bool isFacingRight = true;
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -18,14 +18,23 @@ public class Player : MonoBehaviour
     public float dashPower = 100f;
     public float dashTime = 0.2f;
     public float dashCooldown = 1f;
+    public float afterImageSpawnInterval = 0.1f;
+    public GameObject afterImagePrefab;
 
     private bool canDash = true;
     private bool isDashing;
+    private float afterImageTimer;
 
     [Header("공격")]
     public GameObject hitScan;
+    public GameObject skillHitScan;
 
     private bool isAttacking = false;
+
+    [Header("카메라효과")]
+    public CameraShake cameraShake;
+    public float shakeDuration = 0.1f; // 카메라 쉐이크 지속 시간
+    public float shakeMagnitude = 0.1f; // 카메라 쉐이크 강도
 
     Rigidbody2D rb;
 
@@ -36,7 +45,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (isAttacking == false)
+        if (!isAttacking)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
         }
@@ -52,27 +61,27 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && isAttacking == false)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && !isAttacking)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 0f && isAttacking == false)
+        if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 0f && !isAttacking)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && canDash && isAttacking == false)
+        if (Input.GetKeyDown(KeyCode.Q) && canDash && !isAttacking)
         {
             StartCoroutine(Dash());
         }
 
         Attack();
+        StrongAttack();
     }
 
     private void FixedUpdate()
     {
-
         if (isDashing)
         {
             return;
@@ -104,16 +113,40 @@ public class Player : MonoBehaviour
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0;
         rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
-        yield return new WaitForSeconds(dashTime);
+        afterImageTimer = 0f;
+        float dashTimer = dashTime;
+
+        while (dashTimer > 0f)
+        {
+            dashTimer -= Time.deltaTime;
+            afterImageTimer -= Time.deltaTime;
+
+            if (afterImageTimer <= 0f)
+            {
+                SpawnAfterImage();
+                afterImageTimer = afterImageSpawnInterval;
+            }
+
+            yield return null;
+        }
+
         rb.gravityScale = originalGravity;
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
 
+    private void SpawnAfterImage()
+    {
+        GameObject afterImage = Instantiate(afterImagePrefab, transform.position, transform.rotation);
+        SpriteRenderer spriteRenderer = afterImage.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = GetComponent<SpriteRenderer>().sprite;
+        spriteRenderer.sortingOrder = GetComponent<SpriteRenderer>().sortingOrder - 1; // 잔상을 오브젝트 뒤로 보내기
+    }
+
     private void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && isAttacking == false)
+        if (Input.GetKeyDown(KeyCode.Z) && !isAttacking)
         {
             isAttacking = true;
             hitScan.SetActive(true);
@@ -121,9 +154,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void StrongAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.X) && !isAttacking)
+        {
+            isAttacking = true;
+            skillHitScan.SetActive(true);
+            Invoke("AttackDone", 1f);
+        }
+    }
+
     private void AttackDone()
     {
         isAttacking = false;
         hitScan.SetActive(false);
+        skillHitScan.SetActive(false);
     }
 }
