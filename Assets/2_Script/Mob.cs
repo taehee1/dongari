@@ -26,7 +26,7 @@ public class Mob : MonoBehaviour
 
         if (collision.tag == "HitScan")
         {
-            shakeMagnitude = 2f;
+            shakeMagnitude = 4f;
             StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
 
             if (Player.isFacingRight == true)
