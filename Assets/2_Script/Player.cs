@@ -36,6 +36,9 @@ public class Player : MonoBehaviour
     public float shakeDuration = 0.1f; // 카메라 쉐이크 지속 시간
     public float shakeMagnitude = 0.1f; // 카메라 쉐이크 강도
 
+    [Header("애니메이션")]
+    public Animator animator;
+
     Rigidbody2D rb;
 
     private void Start()
@@ -45,14 +48,20 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!isAttacking)
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
-            horizontal = Input.GetAxisRaw("Horizontal");
+            if (!isAttacking)
+            {
+                horizontal = Input.GetAxisRaw("Horizontal");
+                animator.SetBool("Run", true);
+            }
+            else
+            {
+                horizontal = 0f;
+                animator.SetBool("Run", false);
+            }
         }
-        else
-        {
-            horizontal = 0f;
-        }
+        
 
         Flip();
 
@@ -151,6 +160,7 @@ public class Player : MonoBehaviour
             isAttacking = true;
             hitScan.SetActive(true);
             Invoke("AttackDone", 0.5f);
+            animator.SetTrigger("Attack");
         }
     }
 
