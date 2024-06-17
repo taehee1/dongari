@@ -48,21 +48,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            if (!isAttacking)
-            {
-                horizontal = Input.GetAxisRaw("Horizontal");
-                animator.SetBool("Run", true);
-            }
-            else
-            {
-                horizontal = 0f;
-                animator.SetBool("Run", false);
-            }
-        }
-        
-
+        Move();
         Flip();
 
         if (isDashing)
@@ -82,7 +68,10 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q) && canDash && !isAttacking)
         {
-            StartCoroutine(Dash());
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+            {
+                StartCoroutine(Dash());
+            }
         }
 
         Attack();
@@ -102,6 +91,20 @@ public class Player : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private void Move()
+    {
+        if (!isAttacking)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
+            animator.SetBool("Run", horizontal != 0);
+        }
+        else
+        {
+            horizontal = 0f;
+            animator.SetBool("Run", false);
+        }
     }
 
     private void Flip()
@@ -151,6 +154,7 @@ public class Player : MonoBehaviour
         SpriteRenderer spriteRenderer = afterImage.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = GetComponent<SpriteRenderer>().sprite;
         spriteRenderer.sortingOrder = GetComponent<SpriteRenderer>().sortingOrder - 1; // 잔상을 오브젝트 뒤로 보내기
+        afterImage.transform.localScale = transform.localScale;
     }
 
     private void Attack()
@@ -158,7 +162,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && !isAttacking)
         {
             isAttacking = true;
-            hitScan.SetActive(true);
+            hitScan.GetComponent<Collider2D>().enabled = true;
             Invoke("AttackDone", 0.5f);
             animator.SetTrigger("Attack");
         }
@@ -169,7 +173,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) && !isAttacking)
         {
             isAttacking = true;
-            skillHitScan.SetActive(true);
+            skillHitScan.GetComponent<Collider2D>().enabled = true;
             Invoke("AttackDone", 1f);
         }
     }
@@ -177,7 +181,7 @@ public class Player : MonoBehaviour
     private void AttackDone()
     {
         isAttacking = false;
-        hitScan.SetActive(false);
-        skillHitScan.SetActive(false);
+        hitScan.GetComponent<Collider2D>().enabled = false;
+        skillHitScan.GetComponent<Collider2D>().enabled = false;
     }
 }
