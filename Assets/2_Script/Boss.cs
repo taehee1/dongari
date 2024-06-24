@@ -8,6 +8,10 @@ public class Boss : MonoBehaviour
     public float shakeDuration = 0.1f; // 카메라 쉐이크 지속 시간
     public float shakeMagnitude = 0.1f; // 카메라 쉐이크 강도
 
+    public GameObject attack1Prefab; // 기둥 프리팹
+    public List<Transform> spawnPoints; // 기둥이 소환될 위치들
+    public int numberOfAttack1 = 4; // 생성할 기둥의 개수
+
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Transform player;
@@ -26,7 +30,7 @@ public class Boss : MonoBehaviour
     {
         chance++;
         Debug.Log($"Chance : {chance}");
-        int pattern = Random.Range(1, 3);
+        int pattern = Random.Range(1, 2);
         if (pattern == 1)
         {
             Debug.Log("1");
@@ -47,7 +51,32 @@ public class Boss : MonoBehaviour
     private void Pattern_1()
     {
         animator.SetTrigger("Attack1");
-        Invoke("PatternRandom", 3f);
+
+        List<Transform> selectedSpawnPoints = GetRandomSpawnPoints();
+
+        foreach (Transform spawnPoint in selectedSpawnPoints)
+        {
+            Instantiate(attack1Prefab, spawnPoint.position, Quaternion.identity);
+        }
+
+        Invoke("PatternRandom", 9f);
+    }
+
+    private List<Transform> GetRandomSpawnPoints()
+    {
+        List<Transform> selectedPoints = new List<Transform>();
+        List<Transform> availablePoints = new List<Transform>(spawnPoints);
+
+        for (int i = 0; i < numberOfAttack1; i++)
+        {
+            if (availablePoints.Count == 0) break;
+
+            int randomIndex = Random.Range(0, availablePoints.Count);
+            selectedPoints.Add(availablePoints[randomIndex]);
+            availablePoints.RemoveAt(randomIndex);
+        }
+
+        return selectedPoints;
     }
 
     private void Pattern_2()
