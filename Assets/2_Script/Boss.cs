@@ -26,7 +26,7 @@ public class Boss : MonoBehaviour
     {
         chance++;
         Debug.Log($"Chance : {chance}");
-        int pattern = Random.Range(1, 4);
+        int pattern = Random.Range(1, 3);
         if (pattern == 1)
         {
             Debug.Log("1");
@@ -46,6 +46,7 @@ public class Boss : MonoBehaviour
 
     private void Pattern_1()
     {
+        animator.SetTrigger("Attack1");
         Invoke("PatternRandom", 3f);
     }
 
