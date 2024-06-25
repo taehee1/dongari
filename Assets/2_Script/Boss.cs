@@ -34,7 +34,7 @@ public class Boss : MonoBehaviour
         if (pattern == 1)
         {
             Debug.Log("1");
-            Pattern_1();
+            Invoke("Pattern_1", 3f);
         }
         else if (pattern == 2)
         {
