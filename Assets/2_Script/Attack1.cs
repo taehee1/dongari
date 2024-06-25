@@ -14,7 +14,7 @@ public class Attack1 : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         color = spriteRenderer.color;
         collider2D = GetComponent<Collider2D>();
-        Invoke("HitOn", 0.4f);
+        Invoke("HitOn", 1.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,7 +27,7 @@ public class Attack1 : MonoBehaviour
         color = new Color(0, 1, 1, 1);
         spriteRenderer.color = color;
         collider2D.enabled = true;
-        Invoke("StartShrinkCoroutine", 1f);
+        Invoke("StartShrinkCoroutine", 1.5f);
     }
 
     private void StartShrinkCoroutine()
