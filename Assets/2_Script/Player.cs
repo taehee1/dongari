@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Stat")]
+    private float maxHp = 100;
+    private float currentHp;
+    private float attackDmg;
+
     [Header("이동")]
     public int jumpPower; // 점프 높이
     public float speed = 5f; // 이동 속도
@@ -43,6 +48,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        currentHp = maxHp;
         rb = GetComponent<Rigidbody2D>();
     }
 

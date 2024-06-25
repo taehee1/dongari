@@ -7,14 +7,14 @@ public class Attack1 : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color color;
     private Collider2D collider2D;
-    public float shrinkDuration = 3f;
+    private float shrinkDuration = 2f;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         color = spriteRenderer.color;
         collider2D = GetComponent<Collider2D>();
-        Invoke("HitOn", 2f);
+        Invoke("HitOn", 1f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
