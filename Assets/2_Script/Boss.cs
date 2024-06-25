@@ -56,10 +56,10 @@ public class Boss : MonoBehaviour
 
         foreach (Transform spawnPoint in selectedSpawnPoints)
         {
-            Instantiate(attack1Prefab, spawnPoint.position, Quaternion.identity);
+            Instantiate(attack1Prefab, spawnPoint.position, Quaternion.Euler(0, 0, 90));
         }
 
-        Invoke("PatternRandom", 9f);
+        Invoke("PatternRandom", 5f);
     }
 
     private List<Transform> GetRandomSpawnPoints()
@@ -96,13 +96,13 @@ public class Boss : MonoBehaviour
         if (collision.tag == "HitScan")
         {
             shakeMagnitude = 4f;
-            StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
+            //StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
             Invoke("MobColorReset", 0.3f);
         }
         else if (collision.tag == "SkillHitScan")
         {
             shakeMagnitude = 15f;
-            StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
+            //StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
             Invoke("MobColorReset", 0.3f);
         }
     }

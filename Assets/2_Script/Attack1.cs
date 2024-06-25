@@ -7,14 +7,14 @@ public class Attack1 : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color color;
     private Collider2D collider2D;
-    private float shrinkDuration = 2f;
+    private float shrinkDuration = 1.5f;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         color = spriteRenderer.color;
         collider2D = GetComponent<Collider2D>();
-        Invoke("HitOn", 1f);
+        Invoke("HitOn", 0.4f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,7 +27,7 @@ public class Attack1 : MonoBehaviour
         color = new Color(0, 1, 1, 1);
         spriteRenderer.color = color;
         collider2D.enabled = true;
-        Invoke("StartShrinkCoroutine", 2f);
+        Invoke("StartShrinkCoroutine", 1f);
     }
 
     private void StartShrinkCoroutine()
@@ -43,8 +43,8 @@ public class Attack1 : MonoBehaviour
         while (elapsedTime < shrinkDuration)
         {
             transform.localScale = new Vector3(
-                originalScale.x * (1 - (elapsedTime / shrinkDuration)),
-                originalScale.y,
+                originalScale.x,
+                originalScale.y * (1 - (elapsedTime / shrinkDuration)),
                 originalScale.z
             );
 
