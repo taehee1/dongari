@@ -6,9 +6,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Stat")]
-    private float maxHp = 100;
-    private float currentHp;
-    private float attackDmg;
+    private int maxHp = 10;
+    public int currentHp = 10;
+    private float attackDmg = 10;
+
+    [Header("UI")]
+    public GameObject[] hpUi;
 
     [Header("이동")]
     public int jumpPower; // 점프 높이
@@ -46,9 +49,15 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rb;
 
+    public static Player instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
-        currentHp = maxHp;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -83,6 +92,11 @@ public class Player : MonoBehaviour
 
         Attack();
         StrongAttack();
+    }
+
+    public void HpUiUpdate()
+    {
+        hpUi[currentHp].SetActive(false);
     }
 
     private void FixedUpdate()

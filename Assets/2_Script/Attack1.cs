@@ -19,7 +19,12 @@ public class Attack1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.tag == "Player")
+        {
+            Debug.Log("hit");
+            Player.instance.currentHp -= 1;
+            Player.instance.HpUiUpdate();
+        }
     }
 
     private void HitOn()

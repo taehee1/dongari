@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+    [Header("능력치")]
+    private int hp = 100;
+
+    [Header("카메라")]
     public CameraShake cameraShake;
     public float shakeDuration = 0.1f; // 카메라 쉐이크 지속 시간
     public float shakeMagnitude = 0.1f; // 카메라 쉐이크 강도
 
+    [Header("패턴1")]
     public GameObject attack1Prefab; // 기둥 프리팹
     public List<Transform> spawnPoints; // 기둥이 소환될 위치들
     public int numberOfAttack1 = 4; // 생성할 기둥의 개수

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Mob : MonoBehaviour
 {
+    public static Mob Instance;
+
     SpriteRenderer spriteRenderer;
 
     public CameraShake cameraShake;
@@ -14,6 +16,11 @@ public class Mob : MonoBehaviour
 
     public float mobHp = 30;
     public float mobDmg = 10;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
