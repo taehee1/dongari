@@ -8,14 +8,12 @@ public class Player : MonoBehaviour
     [Header("Stat")]
     private int maxHp = 10;
     public int currentHp = 10;
-    private float attackDmg = 10;
-
-    [Header("UI")]
-    public GameObject[] hpUi;
+    public float attackDmg = 10;
 
     [Header("이동")]
     public int jumpPower; // 점프 높이
     public float speed = 5f; // 이동 속도
+    public bool canMove = false;
     public static bool isFacingRight = true;
     private float horizontal;
 
@@ -71,7 +69,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && !isAttacking && canMove == true)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             animator.SetTrigger("Jump");
@@ -82,7 +80,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && canDash && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.Q) && canDash && !isAttacking && canMove == true)
         {
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
             {
@@ -92,11 +90,6 @@ public class Player : MonoBehaviour
 
         Attack();
         StrongAttack();
-    }
-
-    public void HpUiUpdate()
-    {
-        hpUi[currentHp].SetActive(false);
     }
 
     private void FixedUpdate()
@@ -116,15 +109,18 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        if (!isAttacking)
+        if (canMove == true)
         {
-            horizontal = Input.GetAxisRaw("Horizontal");
-            animator.SetBool("Run", horizontal != 0);
-        }
-        else
-        {
-            horizontal = 0f;
-            animator.SetBool("Run", false);
+            if (!isAttacking)
+            {
+                horizontal = Input.GetAxisRaw("Horizontal");
+                animator.SetBool("Run", horizontal != 0);
+            }
+            else
+            {
+                horizontal = 0f;
+                animator.SetBool("Run", false);
+            }
         }
     }
 

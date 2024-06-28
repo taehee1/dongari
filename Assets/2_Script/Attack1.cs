@@ -23,7 +23,7 @@ public class Attack1 : MonoBehaviour
         {
             Debug.Log("hit");
             Player.instance.currentHp -= 1;
-            Player.instance.HpUiUpdate();
+            UiManager.instance.HpUiUpdate();
         }
     }
 

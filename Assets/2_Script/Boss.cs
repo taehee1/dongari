@@ -5,7 +5,8 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     [Header("능력치")]
-    private int hp = 100;
+    public float maxHp = 100;
+    public float hp = 1;
 
     [Header("카메라")]
     public CameraShake cameraShake;
@@ -22,6 +23,13 @@ public class Boss : MonoBehaviour
     private Transform player;
 
     private int chance = 0;
+
+    public static Boss instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -96,17 +104,19 @@ public class Boss : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        spriteRenderer.color = new Color(1f, 0.8f, 0.8f);
 
         if (collision.tag == "HitScan")
         {
             shakeMagnitude = 4f;
+            spriteRenderer.color = new Color(1f, 0.8f, 0.8f);
+            hp -= Player.instance.attackDmg;
             //StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
             Invoke("MobColorReset", 0.3f);
         }
         else if (collision.tag == "SkillHitScan")
         {
             shakeMagnitude = 15f;
+            spriteRenderer.color = new Color(1f, 0.8f, 0.8f);
             //StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
             Invoke("MobColorReset", 0.3f);
         }
