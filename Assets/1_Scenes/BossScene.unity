@@ -2437,10 +2437,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info:
     text:
-    - "1\uBC88"
-    - "2\uBC88"
-    - "3\uBC88"
-    - "4\uBC88"
+    - "\uAE30\uC5B4\uC774 \uC5EC\uAE30\uAE4C\uC9C0 \uC654\uB098? \uBC29\uD574\uAFBC."
+    - "\uB0A0 \uBC29\uD574\uAFBC\uC774\uB77C\uACE0 \uCE6D\uD558\uAE30\uC5D4 \uB108\uD76C\uAC00
+      \uBA3C\uC800 \uCE68\uACF5\uD55C \uAC70 \uC796\uC544?"
+    - "\uD558\u2026. \uC774\uC820 \uB354\uB294 \uBC29\uD574\uD560 \uC218 \uC5C6\uC744
+      \uAC83\uC774\uB2E4."
   system: {fileID: 796354208}
 --- !u!114 &796354208
 MonoBehaviour:
