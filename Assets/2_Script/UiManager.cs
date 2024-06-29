@@ -17,7 +17,7 @@ public class UiManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(CoStartBossHp());
+        
     }
 
     private void Update()
@@ -35,7 +35,12 @@ public class UiManager : MonoBehaviour
         bossHp.value = 1 * (Boss.instance.hp / Boss.instance.maxHp);
     }
 
-    private IEnumerator CoStartBossHp()
+    public void StartBoss()
+    {
+        StartCoroutine(CoStartBossHp());
+    }
+
+    public IEnumerator CoStartBossHp()
     {
         while (Boss.instance.hp < Boss.instance.maxHp)
         {
@@ -45,6 +50,7 @@ public class UiManager : MonoBehaviour
             if (Boss.instance.hp == Boss.instance.maxHp)
             {
                 Player.instance.canMove = true;
+                Boss.instance.PatternRandom();
             }
         }
     }

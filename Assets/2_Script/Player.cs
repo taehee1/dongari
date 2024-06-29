@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private int maxHp = 10;
     public int currentHp = 10;
     public float attackDmg = 10;
+    public bool godMode = false;
 
     [Header("이동")]
     public int jumpPower; // 점프 높이
@@ -61,6 +62,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!canMove)
+        {
+            horizontal = 0f;
+            return;
+        }
         Move();
         Flip();
 
@@ -109,18 +115,15 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        if (canMove == true)
+        if (!isAttacking)
         {
-            if (!isAttacking)
-            {
-                horizontal = Input.GetAxisRaw("Horizontal");
-                animator.SetBool("Run", horizontal != 0);
-            }
-            else
-            {
-                horizontal = 0f;
-                animator.SetBool("Run", false);
-            }
+            horizontal = Input.GetAxisRaw("Horizontal");
+            animator.SetBool("Run", horizontal != 0);
+        }
+        else
+        {
+            horizontal = 0f;
+            animator.SetBool("Run", false);
         }
     }
 
@@ -163,6 +166,30 @@ public class Player : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    public void StunOff()
+    {
+        canMove = true;
+    }
+
+    public void Stun()
+    {
+        canMove = false;
+        horizontal = 0f;
+    }
+
+    public void GodModeOn()
+    {
+        godMode = true;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.6f);
+        Invoke("GodModeOff", 3f);
+    }
+
+    public void GodModeOff()
+    {
+        godMode = false;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
     }
 
     private void SpawnAfterImage()

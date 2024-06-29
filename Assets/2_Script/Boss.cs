@@ -36,10 +36,9 @@ public class Boss : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        PatternRandom();
     }
 
-    private void PatternRandom()
+    public void PatternRandom()
     {
         chance++;
         Debug.Log($"Chance : {chance}");

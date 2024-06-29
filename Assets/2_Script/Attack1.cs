@@ -21,9 +21,15 @@ public class Attack1 : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Debug.Log("hit");
-            Player.instance.currentHp -= 1;
-            UiManager.instance.HpUiUpdate();
+            if (Player.instance.godMode == false)
+            {
+                Debug.Log("hit");
+                Player.instance.currentHp -= 1;
+                UiManager.instance.HpUiUpdate();
+                Player.instance.animator.SetTrigger("Hited");
+                Player.instance.Stun();
+                Player.instance.GodModeOn();
+            }
         }
     }
 
