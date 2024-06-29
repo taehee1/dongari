@@ -2440,7 +2440,7 @@ MonoBehaviour:
     - "1\uBC88"
     - "2\uBC88"
     - "3\uBC88"
-    - "\uC139\uC2A4"
+    - "4\uBC88"
   system: {fileID: 796354208}
 --- !u!114 &796354208
 MonoBehaviour:
