@@ -8,6 +8,9 @@ public class UiManager : MonoBehaviour
     public GameObject[] hpUi;
     public Slider bossHp;
 
+    public GameObject menu;
+    public bool menuWorking = false;
+
     public static UiManager instance;
 
     private void Awake()
@@ -23,6 +26,33 @@ public class UiManager : MonoBehaviour
     private void Update()
     {
         BossHpUpdate();
+        Menu();
+    }
+
+    private void Menu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (menuWorking == false)
+            {
+                menuWorking = true;
+                menu.SetActive(true);
+                Time.timeScale = 0f;
+            }
+            else if (menuWorking == true)
+            {
+                menuWorking = false;
+                menu.SetActive(false);
+                Time.timeScale = 1f;
+            }
+        }
+    }
+
+    public void Continue()
+    {
+        menuWorking = false;
+        menu.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void HpUiUpdate()

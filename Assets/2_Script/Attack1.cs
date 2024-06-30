@@ -7,6 +7,7 @@ public class Attack1 : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color color;
     private Collider2D collider2D;
+    private AudioSource audioSource;
     private float shrinkDuration = 1.5f;
 
     private void Start()
@@ -14,6 +15,7 @@ public class Attack1 : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         color = spriteRenderer.color;
         collider2D = GetComponent<Collider2D>();
+        audioSource = GetComponent<AudioSource>();
         Invoke("HitOn", 1.5f);
     }
 
@@ -28,6 +30,7 @@ public class Attack1 : MonoBehaviour
                 UiManager.instance.HpUiUpdate();
                 Player.instance.animator.SetTrigger("Hited");
                 Player.instance.Stun();
+                Player.instance.DieCheck();
                 Player.instance.GodModeOn();
             }
         }
@@ -38,6 +41,7 @@ public class Attack1 : MonoBehaviour
         color = new Color(0, 1, 1, 1);
         spriteRenderer.color = color;
         collider2D.enabled = true;
+        audioSource.Play();
         Invoke("StartShrinkCoroutine", 1.5f);
     }
 

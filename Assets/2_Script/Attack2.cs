@@ -11,6 +11,7 @@ public class Attack2 : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        Invoke("ObjDelete", 8f);
     }
 
     void Update()
@@ -36,12 +37,22 @@ public class Attack2 : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Player.instance.currentHp -= 1;
-            UiManager.instance.HpUiUpdate();
-            Player.instance.animator.SetTrigger("Hited");
-            Player.instance.Stun();
-            Player.instance.GodModeOn();
+            if (Player.instance.godMode == false)
+            {
+                Player.instance.currentHp -= 1;
+                UiManager.instance.HpUiUpdate();
+                Player.instance.animator.SetTrigger("Hited");
+                Player.instance.Stun();
+                Player.instance.DieCheck();
+                Player.instance.GodModeOn();
+            }
+
             Destroy(gameObject);
         }
+    }
+
+    private void ObjDelete()
+    {
+        Destroy(gameObject);
     }
 }

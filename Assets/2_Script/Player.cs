@@ -67,8 +67,14 @@ public class Player : MonoBehaviour
             horizontal = 0f;
             return;
         }
-        Move();
-        Flip();
+
+        if (UiManager.instance.menuWorking == false)
+        {
+            Move();
+            Flip();
+            Attack();
+            StrongAttack();
+        }
 
         if (isDashing)
         {
@@ -94,8 +100,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        Attack();
-        StrongAttack();
     }
 
     private void FixedUpdate()
@@ -227,5 +231,14 @@ public class Player : MonoBehaviour
         isAttacking = false;
         hitScan.GetComponent<Collider2D>().enabled = false;
         skillHitScan.GetComponent<Collider2D>().enabled = false;
+    }
+
+    public void DieCheck()
+    {
+        if (currentHp == 0)
+        {
+            animator.SetTrigger("Die");
+            Destroy(gameObject, 2.5f);
+        }
     }
 }
