@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f14abdff729c4546802c99942a7eb8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  returnBtn: {fileID: 0}
+  FadeImage: {fileID: 1057944325}
 --- !u!1 &1008375330
 GameObject:
   m_ObjectHideFlags: 0
