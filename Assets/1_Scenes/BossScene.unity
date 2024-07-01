@@ -5087,7 +5087,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1376438992}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 246a116b72f1ca6428f111146930873e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5991,7 +5991,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1642291324}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 246a116b72f1ca6428f111146930873e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6336,7 +6336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHp: 10
-  attackDmg: 500
+  attackDmg: 10
   godMode: 0
   jumpPower: 20
   speed: 10
