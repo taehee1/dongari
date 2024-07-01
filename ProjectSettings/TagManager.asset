@@ -8,6 +8,10 @@ TagManager:
   - Mob
   - SkillHitScan
   - OneWayPlatform
+  - Wall
+  - ReverseEnergyball
+  - Energyball
+  - Boss
   layers:
   - Default
   - TransparentFX

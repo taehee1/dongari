@@ -62,7 +62,7 @@ public class UiManager : MonoBehaviour
 
     private void BossHpUpdate()
     {
-        bossHp.value = 1 * (Boss.instance.hp / Boss.instance.maxHp);
+        bossHp.value = 1 * (Boss.instance.currentHP / Boss.instance.maxHp);
     }
 
     public void StartBoss()
@@ -72,12 +72,12 @@ public class UiManager : MonoBehaviour
 
     public IEnumerator CoStartBossHp()
     {
-        while (Boss.instance.hp < Boss.instance.maxHp)
+        while (Boss.instance.currentHP < Boss.instance.maxHp)
         {
             yield return new WaitForSeconds(0.0001f);
-            Boss.instance.hp++;
+            Boss.instance.currentHP++;
 
-            if (Boss.instance.hp == Boss.instance.maxHp)
+            if (Boss.instance.currentHP == Boss.instance.maxHp)
             {
                 Player.instance.canMove = true;
                 Boss.instance.PatternRandom();

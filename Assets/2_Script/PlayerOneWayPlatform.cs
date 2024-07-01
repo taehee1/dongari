@@ -12,9 +12,10 @@ public class PlayerOneWayPlatform : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
-            if (currentOneWayPlatform != null)
+            if (currentOneWayPlatform != null && Player.instance.canMove == true)
             {
                 StartCoroutine(DisableCollision());
+                Player.instance.animator.SetTrigger("Fall");
             }
         }
     }

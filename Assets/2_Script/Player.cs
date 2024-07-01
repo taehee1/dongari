@@ -46,6 +46,10 @@ public class Player : MonoBehaviour
     [Header("애니메이션")]
     public Animator animator;
 
+    [Header("효과음")]
+    private AudioSource audioSource;
+    public AudioClip[] clips;
+
     Rigidbody2D rb;
 
     public static Player instance;
@@ -58,6 +62,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -152,6 +157,9 @@ public class Player : MonoBehaviour
         afterImageTimer = 0f;
         float dashTimer = dashTime;
 
+        audioSource.clip = clips[0];
+        audioSource.Play();
+
         while (dashTimer > 0f)
         {
             dashTimer -= Time.deltaTime;
@@ -224,6 +232,12 @@ public class Player : MonoBehaviour
             skillHitScan.GetComponent<Collider2D>().enabled = true;
             Invoke("AttackDone", 1f);
         }
+    }
+
+    public void AttackSound()
+    {
+        audioSource.clip = clips[1];
+        audioSource.Play();
     }
 
     private void AttackDone()
