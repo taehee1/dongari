@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5090364379135039894}
   - component: {fileID: -2797414541795702998}
   m_Layer: 0
-  m_Name: "\uBD89\uC740_\uB808\uC774\uC8001 (1)"
+  m_Name: Attack1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
