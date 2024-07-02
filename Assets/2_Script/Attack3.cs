@@ -16,15 +16,19 @@ public class Attack3 : MonoBehaviour
         color = spriteRenderer.color;
         collider2D = GetComponent<Collider2D>();
         audioSource = GetComponent<AudioSource>();
-        Invoke("HitOn", 1.5f);
+        Invoke("HitOn", 4f);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             if (Player.instance.godMode == false)
             {
+                Player.instance.currentHp -= 1;
+                UiManager.instance.HpUiUpdate();
+                Player.instance.currentHp -= 1;
+                UiManager.instance.HpUiUpdate();
                 Player.instance.currentHp -= 1;
                 UiManager.instance.HpUiUpdate();
                 Player.instance.animator.SetTrigger("Hited");
@@ -36,7 +40,7 @@ public class Attack3 : MonoBehaviour
 
     private void HitOn()
     {
-        color = new Color(0, 1, 1, 1);
+        color = new Color(1, 1, 1, 1);
         spriteRenderer.color = color;
         collider2D.enabled = true;
         audioSource.Play();

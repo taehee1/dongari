@@ -62,6 +62,8 @@ public class Attack2 : MonoBehaviour
         if (collision.tag == "Boss" && gameObject.tag == "ReverseEnergyball")
         {
             Boss.instance.Stun();
+            Boss.instance.currentHP -= 30f;
+            Boss.instance.DieCheck();
             ObjDelete();
         }
 

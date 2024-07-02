@@ -10,7 +10,6 @@ public class Boss : MonoBehaviour
     public float currentHP = 1;
     private bool isStun = false;
     private bool isDie = false;
-    private bool isPattern3Triggered = false;
 
     [Header("카메라")]
     public CameraShake cameraShake;
@@ -28,6 +27,13 @@ public class Boss : MonoBehaviour
     public Transform spawnPosition;
     public int numberOfAttack2 = 1;
 
+    [Header("패턴3")]
+    private bool isPattern3Triggered = false;
+    public GameObject attack3_1;
+    public GameObject attack3_2;
+    public GameObject attack3_3;
+    public GameObject attack3_4;
+
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Transform player;
@@ -44,18 +50,40 @@ public class Boss : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        isPattern3Triggered = false; // 패턴 3 트리거 초기화
     }
 
     public void PatternRandom()
     {
         if (isDie == false && isStun == false)
         {
-
-            if (currentHP <= 30 && !isPattern3Triggered)
+            // 패턴 3 조건 추가 및 수정
+            if (currentHP <= 800 && currentHP >= 700 && !isPattern3Triggered)
             {
-                Debug.Log("3");
+                Debug.Log("Pattern 3 - HP range 700-800");
                 Pattern_3();
-                isPattern3Triggered = true; // 패턴 3이 트리거되었음을 표시
+                isPattern3Triggered = true;
+                return;
+            }
+            else if (currentHP <= 600 && currentHP >= 500 && !isPattern3Triggered)
+            {
+                Debug.Log("Pattern 3 - HP range 500-600");
+                Pattern_3();
+                isPattern3Triggered = true;
+                return;
+            }
+            else if (currentHP <= 400 && currentHP >= 300 && !isPattern3Triggered)
+            {
+                Debug.Log("Pattern 3 - HP range 300-400");
+                Pattern_3();
+                isPattern3Triggered = true;
+                return;
+            }
+            else if (currentHP <= 200 && currentHP >= 100 && !isPattern3Triggered)
+            {
+                Debug.Log("Pattern 3 - HP range 100-200");
+                Pattern_3();
+                isPattern3Triggered = true;
                 return;
             }
 
@@ -126,7 +154,23 @@ public class Boss : MonoBehaviour
 
     private void Pattern_3()
     {
-        Invoke("PatternRandom", 3f);
+        if (currentHP <= 800 && currentHP >= 700)
+        {
+            attack3_1.SetActive(true);
+        }
+        else if(currentHP <= 600 && currentHP >= 500)
+        {
+            attack3_2.SetActive(true);
+        }
+        else if(currentHP <= 400 && currentHP >= 300)
+        {
+            attack3_3.SetActive(true);
+        }
+        else if (currentHP <= 200 && currentHP >= 100)
+        {
+            attack3_4.SetActive(true);
+        }
+        Invoke("PatternRandom", 8f);
     }
 
     public void Stun()
@@ -165,7 +209,7 @@ public class Boss : MonoBehaviour
         }
     }
 
-    private void DieCheck()
+    public void DieCheck()
     {
         if (currentHP <= 0)
         {
