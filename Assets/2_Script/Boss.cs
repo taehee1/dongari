@@ -66,7 +66,7 @@ public class Boss : MonoBehaviour
                 Pattern_1();
                 pattern1Count++;
             }
-            else if (pattern == 2 && pattern1Count >= 3)
+            else if (pattern == 2 && pattern1Count >= 2)
             {
                 Debug.Log("2");
                 Pattern_2();
