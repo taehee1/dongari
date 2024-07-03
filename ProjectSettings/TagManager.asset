@@ -12,6 +12,7 @@ TagManager:
   - ReverseEnergyball
   - Energyball
   - Boss
+  - Ground
   layers:
   - Default
   - TransparentFX
