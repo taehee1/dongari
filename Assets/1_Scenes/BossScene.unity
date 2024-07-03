@@ -2659,7 +2659,6 @@ MonoBehaviour:
   - {fileID: 1015589904}
   - {fileID: 866142201}
   - {fileID: 1135737893}
-  bossHp: {fileID: 923555084}
   menu: {fileID: 1552891072}
   menuWorking: 0
 --- !u!4 &419221530
@@ -10834,6 +10833,51 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1758204644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1758204646}
+  - component: {fileID: 1758204645}
+  m_Layer: 0
+  m_Name: BossUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1758204645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758204644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15316d36d4d2b3f49b0f794b3c5ab0e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossHp: {fileID: 923555084}
+--- !u!4 &1758204646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758204644}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 814.3756, y: 330.00183, z: -15.053114}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1767491962
 GameObject:
   m_ObjectHideFlags: 0
@@ -13333,6 +13377,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 809724280}
   - {fileID: 419221530}
+  - {fileID: 1758204646}
   - {fileID: 1179612045}
   - {fileID: 1111682884}
   - {fileID: 489352759}

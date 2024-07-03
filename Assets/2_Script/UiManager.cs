@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class UiManager : MonoBehaviour
 {
     public GameObject[] hpUi;
-    public Slider bossHp;
 
     public GameObject menu;
     public bool menuWorking = false;
@@ -25,7 +24,6 @@ public class UiManager : MonoBehaviour
 
     private void Update()
     {
-        BossHpUpdate();
         Menu();
     }
 
@@ -58,30 +56,5 @@ public class UiManager : MonoBehaviour
     public void HpUiUpdate()
     {
         hpUi[Player.instance.currentHp].SetActive(false);
-    }
-
-    private void BossHpUpdate()
-    {
-        bossHp.value = 1 * (Boss.instance.currentHP / Boss.instance.maxHp);
-    }
-
-    public void StartBoss()
-    {
-        StartCoroutine(CoStartBossHp());
-    }
-
-    public IEnumerator CoStartBossHp()
-    {
-        while (Boss.instance.currentHP < Boss.instance.maxHp)
-        {
-            yield return new WaitForSeconds(0.0001f);
-            Boss.instance.currentHP++;
-
-            if (Boss.instance.currentHP == Boss.instance.maxHp)
-            {
-                Player.instance.canMove = true;
-                Boss.instance.PatternRandom();
-            }
-        }
     }
 }

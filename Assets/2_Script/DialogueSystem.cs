@@ -37,7 +37,7 @@ public class DialogueSystem : MonoBehaviour
 
     private void End()
     {
-        UiManager.instance.StartBoss();
+        BossUI.instance.StartBoss();
         gameObject.SetActive(false);
     }
 }
