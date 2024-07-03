@@ -2833,6 +2833,7 @@ MonoBehaviour:
   shakeMagnitude: 2
   mobHp: 30
   mobDmg: 10
+  MoveSpeed: 4
 --- !u!212 &1020092425
 SpriteRenderer:
   m_ObjectHideFlags: 0

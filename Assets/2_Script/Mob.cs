@@ -17,6 +17,11 @@ public class Mob : MonoBehaviour
     public float mobHp = 30;
     public float mobDmg = 10;
 
+    private float moveTime = 0f;
+    private float TurnTime = 0f;
+    public float MoveSpeed = 0f;
+
+
     private void Awake()
     {
         Instance = this;
@@ -66,5 +71,25 @@ public class Mob : MonoBehaviour
     private void MobColorReset()
     {
         spriteRenderer.color = new Color(1, 1, 1);
+    }
+    void Update()
+    {
+        MonsterMove();
+    }
+    //¸÷ ¿òÁ÷ÀÓ
+    private void MonsterMove()
+    {
+        moveTime += Time.deltaTime;
+        if(moveTime <= TurnTime) 
+        {
+            this.transform.Translate(MoveSpeed*Time.deltaTime,0,0);
+        }
+        else
+        {
+            TurnTime = Random.Range(1, 5);
+            moveTime = 0;
+
+            transform.Rotate(0, 180, 0);
+        }  
     }
 }
