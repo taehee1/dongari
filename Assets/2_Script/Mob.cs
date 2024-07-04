@@ -15,7 +15,7 @@ public class Mob : MonoBehaviour
     public float shakeMagnitude = 0.1f; // 카메라 쉐이크 강도
 
     public float mobHp = 30;
-    public float mobDmg = 10;
+    public float mobDmg = 1;
 
     private float moveTime = 0f;
     private float TurnTime = 0f;
@@ -73,10 +73,7 @@ public class Mob : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            animator.SetTrigger("Attack");
-        }
+        
     }
 
     private void MobColorReset()

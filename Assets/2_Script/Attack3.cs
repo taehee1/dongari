@@ -8,7 +8,7 @@ public class Attack3 : MonoBehaviour
     private Color color;
     private Collider2D collider2D;
     private AudioSource audioSource;
-    private float shrinkDuration = 1.5f;
+    private float shrinkDuration = 1f;
 
     private void Start()
     {
@@ -16,7 +16,7 @@ public class Attack3 : MonoBehaviour
         color = spriteRenderer.color;
         collider2D = GetComponent<Collider2D>();
         audioSource = GetComponent<AudioSource>();
-        Invoke("HitOn", 4f);
+        Invoke("HitOn", 2.5f);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

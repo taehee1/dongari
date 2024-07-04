@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && canDash && !isAttacking && canMove == true)
+        if (Input.GetKeyDown(KeyCode.C) && canDash && !isAttacking && canMove == true)
         {
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
             {

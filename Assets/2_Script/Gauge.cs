@@ -63,6 +63,7 @@ public class Gauge : MonoBehaviour
     {
         if (currentCharge < 1f)
         {
+            Player.instance.speed = 5;
             currentCharge += attackChargeSpeed * Time.deltaTime;
             attackGauge.fillAmount = currentCharge;
         }
@@ -70,8 +71,9 @@ public class Gauge : MonoBehaviour
 
     void PerformAttack()
     {
-        attackPower = Mathf.Lerp(10f, maxAttackPower, currentCharge); // 공격력 계산
+        attackPower = Mathf.Lerp(5f, maxAttackPower, currentCharge); // 공격력 계산
         Debug.Log("Attack with power: " + attackPower);
+        Player.instance.speed = 10;
         currentCharge = 0f;
         attackGauge.fillAmount = currentCharge;
     }

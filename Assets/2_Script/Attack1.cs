@@ -8,7 +8,7 @@ public class Attack1 : MonoBehaviour
     private Color color;
     private Collider2D collider2D;
     private AudioSource audioSource;
-    private float shrinkDuration = 1.5f;
+    private float shrinkDuration = 1f;
 
     private void Start()
     {

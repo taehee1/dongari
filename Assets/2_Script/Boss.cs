@@ -65,11 +65,11 @@ public class Boss : MonoBehaviour
                 isPattern3Triggered = true;
                 return;
             }
-            else if (currentHP <= 600 && currentHP >= 500 && !isPattern3Triggered)
+            else if (currentHP <= 600 && currentHP >= 500 && isPattern3Triggered)
             {
                 Debug.Log("Pattern 3 - HP range 500-600");
                 Pattern_3();
-                isPattern3Triggered = true;
+                isPattern3Triggered = false;
                 return;
             }
             else if (currentHP <= 400 && currentHP >= 300 && !isPattern3Triggered)
@@ -79,11 +79,11 @@ public class Boss : MonoBehaviour
                 isPattern3Triggered = true;
                 return;
             }
-            else if (currentHP <= 200 && currentHP >= 100 && !isPattern3Triggered)
+            else if (currentHP <= 200 && currentHP >= 100 && isPattern3Triggered)
             {
                 Debug.Log("Pattern 3 - HP range 100-200");
                 Pattern_3();
-                isPattern3Triggered = true;
+                isPattern3Triggered = false;
                 return;
             }
 

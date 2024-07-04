@@ -2692,8 +2692,8 @@ MonoBehaviour:
   gaugeObj: {fileID: 489168773}
   gauge: {fileID: 489168775}
   attackGauge: {fileID: 1506811687}
-  attackChargeSpeed: 1
-  maxAttackPower: 50
+  attackChargeSpeed: 0.3
+  maxAttackPower: 80
   attackPower: 0
   playerTransform: {fileID: 1755707714}
   gaugeOffset: {x: 0, y: 2.5, z: 0}
