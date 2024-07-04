@@ -16,7 +16,10 @@ public class Scene_Manager : MonoBehaviour
     {
         SceneManager.LoadScene("BossScene");
     }
-
+    public void TilteScene()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
     public void ExitGame()
     {
         Application.Quit();
