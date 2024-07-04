@@ -21,7 +21,7 @@ public class Mob : MonoBehaviour
     private float TurnTime = 0f;
     public float MoveSpeed = 0f;
 
-    private Animator Mobaim;
+    private Animator animator;
 
     private void Awake()
     {
@@ -31,7 +31,7 @@ public class Mob : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Mobaim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,6 +51,7 @@ public class Mob : MonoBehaviour
             {
                 gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(-7f, 7f, 0);
             }
+            mobHp -= Player.instance.attackDmg;
             Invoke("MobColorReset", 0.3f);
         }
         else if (collision.tag == "SkillHitScan")
@@ -68,9 +69,13 @@ public class Mob : MonoBehaviour
             }
             Invoke("MobColorReset", 0.3f);
         }
-        else if (collision.gameObject.tag == "Player")
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
-            Mobaim.SetTrigger("Attack");
+            animator.SetTrigger("Attack");
         }
     }
 
@@ -78,11 +83,13 @@ public class Mob : MonoBehaviour
     {
         spriteRenderer.color = new Color(1, 1, 1);
     }
+
     void Update()
     {
         MonsterMove();
+        DieCheck();
     }
-    //¸÷ ¿òÁ÷ÀÓ
+
     private void MonsterMove()
     {
         moveTime += Time.deltaTime;
@@ -97,5 +104,13 @@ public class Mob : MonoBehaviour
 
             transform.Rotate(0, 180, 0);
         }  
+    }
+
+    private void DieCheck()
+    {
+        if (mobHp <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

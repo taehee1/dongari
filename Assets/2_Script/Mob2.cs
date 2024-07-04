@@ -37,6 +37,7 @@ public class Mob2 : MonoBehaviour
             shakeMagnitude = 4f;
             StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
             Mobaim.SetTrigger("Hit");
+            mobHp -= Player.instance.attackDmg;
 
             Invoke("MobColorReset", 0.3f);
         }
@@ -62,7 +63,9 @@ public class Mob2 : MonoBehaviour
     void Update()
     {
         MonsterMove();
+        DieCheck();
     }
+
     //¸÷ ¿òÁ÷ÀÓ
     private void MonsterMove()
     {
@@ -77,6 +80,14 @@ public class Mob2 : MonoBehaviour
             moveTime = 0;
 
             transform.Rotate(0, 180, 0);
+        }
+    }
+
+    private void DieCheck()
+    {
+        if (mobHp <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
