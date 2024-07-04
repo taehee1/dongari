@@ -512,8 +512,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28f5451aed496847b0d0b4e2e0a54fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHp: 10
+  attackDmg: 10
+  godMode: 0
   jumpPower: 15
   speed: 10
+  canMove: 0
   groundCheck: {fileID: 2111519679}
   groundLayer:
     serializedVersion: 2
@@ -529,6 +533,7 @@ MonoBehaviour:
   shakeDuration: 0.1
   shakeMagnitude: 0.1
   animator: {fileID: 390558475}
+  clips: []
 --- !u!212 &390558479
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1323,6 +1328,7 @@ MonoBehaviour:
   shakeMagnitude: 2
   mobHp: 30
   mobDmg: 10
+  MoveSpeed: 0
 --- !u!96 &1618959251
 TrailRenderer:
   serializedVersion: 3

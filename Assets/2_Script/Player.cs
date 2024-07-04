@@ -77,7 +77,6 @@ public class Player : MonoBehaviour
         {
             Move();
             Flip();
-            Attack();
             StrongAttack();
         }
 
@@ -213,10 +212,11 @@ public class Player : MonoBehaviour
         afterImage.transform.localScale = transform.localScale;
     }
 
-    private void Attack()
+    public void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && !isAttacking)
+        if (!isAttacking && UiManager.instance.menuWorking == false && canMove == true)
         {
+            attackDmg = Gauge.instance.attackPower;
             isAttacking = true;
             hitScan.GetComponent<Collider2D>().enabled = true;
             Invoke("AttackDone", 0.5f);

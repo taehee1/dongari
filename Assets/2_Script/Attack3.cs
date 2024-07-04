@@ -19,16 +19,12 @@ public class Attack3 : MonoBehaviour
         Invoke("HitOn", 4f);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             if (Player.instance.godMode == false)
             {
-                Player.instance.currentHp -= 1;
-                UiManager.instance.HpUiUpdate();
-                Player.instance.currentHp -= 1;
-                UiManager.instance.HpUiUpdate();
                 Player.instance.currentHp -= 1;
                 UiManager.instance.HpUiUpdate();
                 Player.instance.animator.SetTrigger("Hited");
