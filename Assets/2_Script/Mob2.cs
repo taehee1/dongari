@@ -1,10 +1,9 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Mob : MonoBehaviour
+public class Mob2 : MonoBehaviour
 {
     public static Mob Instance;
 
@@ -23,12 +22,7 @@ public class Mob : MonoBehaviour
 
     private Animator Mobaim;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    private void Start()
+    void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         Mobaim = GetComponent<Animator>();
@@ -36,48 +30,35 @@ public class Mob : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        spriteRenderer.color = new Color(1f, 0.8f, 0.8f);
+        spriteRenderer.color = new Color(1f, 0.5f, 0.5f);
 
         if (collision.tag == "HitScan")
         {
             shakeMagnitude = 4f;
             StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
+            Mobaim.SetTrigger("Hit");
 
-            if (Player.isFacingRight == true)
-            {
-                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(7f, 7f, 0);
-            }
-            else if (Player.isFacingRight == false)
-            {
-                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(-7f, 7f, 0);
-            }
             Invoke("MobColorReset", 0.3f);
         }
         else if (collision.tag == "SkillHitScan")
         {
             shakeMagnitude = 15f;
             StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
+            Mobaim.SetTrigger("Hit");
 
-            if (Player.isFacingRight == true)
-            {
-                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(15f, 15f, 0);
-            }
-            else if (Player.isFacingRight == false)
-            {
-                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(-15f, 15f, 0);
-            }
             Invoke("MobColorReset", 0.3f);
         }
+        //АјАн
         else if (collision.gameObject.tag == "Player")
         {
             Mobaim.SetTrigger("Attack");
         }
     }
-
     private void MobColorReset()
     {
         spriteRenderer.color = new Color(1, 1, 1);
     }
+
     void Update()
     {
         MonsterMove();
@@ -86,9 +67,9 @@ public class Mob : MonoBehaviour
     private void MonsterMove()
     {
         moveTime += Time.deltaTime;
-        if(moveTime <= TurnTime) 
+        if (moveTime <= TurnTime)
         {
-            this.transform.Translate(MoveSpeed*Time.deltaTime,0,0);
+            this.transform.Translate(MoveSpeed * Time.deltaTime, 0, 0);
         }
         else
         {
@@ -96,6 +77,6 @@ public class Mob : MonoBehaviour
             moveTime = 0;
 
             transform.Rotate(0, 180, 0);
-        }  
+        }
     }
 }
