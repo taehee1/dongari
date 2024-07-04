@@ -21,6 +21,7 @@ public class Mob : MonoBehaviour
     private float TurnTime = 0f;
     public float MoveSpeed = 0f;
 
+    private Animator Mobaim;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class Mob : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        Mobaim = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -65,6 +67,10 @@ public class Mob : MonoBehaviour
                 gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(-15f, 15f, 0);
             }
             Invoke("MobColorReset", 0.3f);
+        }
+        else if (collision.gameObject.tag == "Player")
+        {
+            Mobaim.SetTrigger("Attack");
         }
     }
 

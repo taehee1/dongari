@@ -48,6 +48,11 @@ public class Mob2 : MonoBehaviour
 
             Invoke("MobColorReset", 0.3f);
         }
+        //АјАн
+        else if (collision.gameObject.tag == "Player")
+        {
+            Mobaim.SetTrigger("Attack");
+        }
     }
     private void MobColorReset()
     {
