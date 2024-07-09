@@ -41,7 +41,6 @@ public class Mob : MonoBehaviour
         if (collision.tag == "HitScan")
         {
             shakeMagnitude = 4f;
-            StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
 
             if (Player.isFacingRight == true)
             {
@@ -53,6 +52,7 @@ public class Mob : MonoBehaviour
             }
             mobHp -= Player.instance.attackDmg;
             Invoke("MobColorReset", 0.3f);
+            DieCheck();
         }
         else if (collision.tag == "SkillHitScan")
         {
@@ -84,7 +84,6 @@ public class Mob : MonoBehaviour
     void Update()
     {
         MonsterMove();
-        DieCheck();
     }
 
     private void MonsterMove()

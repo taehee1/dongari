@@ -15,6 +15,7 @@ public class CameraShake : MonoBehaviour
     {
         Vector3 originalPosition = transform.localPosition;
         float elapsed = 0.0f;
+        Debug.Log("Shake");
 
         while (elapsed < duration)
         {

@@ -77,7 +77,6 @@ public class Player : MonoBehaviour
         {
             Move();
             Flip();
-            StrongAttack();
         }
 
         if (isDashing)

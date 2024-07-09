@@ -35,7 +35,6 @@ public class Mob2 : MonoBehaviour
         if (collision.tag == "HitScan")
         {
             shakeMagnitude = 4f;
-            StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
             Mobaim.SetTrigger("Hit");
             mobHp -= Player.instance.attackDmg;
 
