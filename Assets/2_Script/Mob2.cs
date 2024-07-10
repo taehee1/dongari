@@ -20,12 +20,12 @@ public class Mob2 : MonoBehaviour
     private float TurnTime = 0f;
     public float MoveSpeed = 0f;
 
-    private Animator Mobaim;
+    private Animator animator;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Mobaim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,7 +36,7 @@ public class Mob2 : MonoBehaviour
         if (collision.tag == "HitScan")
         {
             shakeMagnitude = 4f;
-            Mobaim.SetTrigger("Hit");
+            animator.SetTrigger("Attacked");
             mobHp -= Player.instance.attackDmg;
 
             Invoke("MobColorReset", 0.3f);
@@ -45,16 +45,20 @@ public class Mob2 : MonoBehaviour
         {
             shakeMagnitude = 15f;
             StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
-            Mobaim.SetTrigger("Hit");
+            animator.SetTrigger("Hit");
 
             Invoke("MobColorReset", 0.3f);
         }
-        //АјАн
-        else if (collision.gameObject.tag == "Player")
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
-            Mobaim.SetTrigger("Attack");
+            animator.SetTrigger("Attack");
         }
     }
+
     private void MobColorReset()
     {
         spriteRenderer.color = new Color(1, 1, 1);

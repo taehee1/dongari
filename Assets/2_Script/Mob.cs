@@ -10,10 +10,6 @@ public class Mob : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
-    public CameraShake cameraShake;
-    public float shakeDuration = 0.1f; // 카메라 쉐이크 지속 시간
-    public float shakeMagnitude = 0.1f; // 카메라 쉐이크 강도
-
     public float mobHp = 30;
     public float mobDmg = 1;
 
@@ -36,11 +32,10 @@ public class Mob : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        spriteRenderer.color = new Color(1f, 0.8f, 0.8f);
 
-        if (collision.tag == "HitScan")
+        if (collision.gameObject.tag == "HitScan")
         {
-            shakeMagnitude = 4f;
+            spriteRenderer.color = new Color(1f, 0.8f, 0.8f);
 
             if (Player.isFacingRight == true)
             {
@@ -51,30 +46,22 @@ public class Mob : MonoBehaviour
                 gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(-7f - Player.instance.attackDmg / 3, 7f + Player.instance.attackDmg / 6, 0);
             }
             mobHp -= Player.instance.attackDmg;
+            animator.SetTrigger("Attacked");
             Player.instance.HitSound();
             Invoke("MobColorReset", 0.3f);
             DieCheck();
         }
-        else if (collision.tag == "SkillHitScan")
-        {
-            shakeMagnitude = 15f;
-            StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
-
-            if (Player.isFacingRight == true)
-            {
-                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(15f, 15f, 0);
-            }
-            else if (Player.isFacingRight == false)
-            {
-                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(-15f, 15f, 0);
-            }
-            Invoke("MobColorReset", 0.3f);
-        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Attack()
     {
-        
+        animator.SetTrigger("Attack");
+        Player.instance.currentHp -= 1;
+        UiManager.instance.HpUiUpdate();
+        Player.instance.animator.SetTrigger("Hited");
+        Player.instance.Stun();
+        Player.instance.DieCheck();
+        Player.instance.GodModeOn();
     }
 
     private void MobColorReset()
@@ -92,7 +79,7 @@ public class Mob : MonoBehaviour
         moveTime += Time.deltaTime;
         if(moveTime <= TurnTime) 
         {
-            this.transform.Translate(MoveSpeed*Time.deltaTime,0,0);
+            transform.Translate(MoveSpeed*Time.deltaTime,0,0);
         }
         else
         {
