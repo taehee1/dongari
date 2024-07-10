@@ -2849,7 +2849,7 @@ SpriteRenderer:
   m_Size: {x: 23.259998, y: 20.61372}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &854829537
@@ -4331,8 +4331,8 @@ MonoBehaviour:
   gaugeObj: {fileID: 567635761}
   gauge: {fileID: 567635763}
   attackGauge: {fileID: 1947592547}
-  attackChargeSpeed: 1
-  maxAttackPower: 70
+  attackChargeSpeed: 0.4
+  maxAttackPower: 35
   attackPower: 0
   playerTransform: {fileID: 2059379747}
   gaugeOffset: {x: 0, y: 2.5, z: 0}
