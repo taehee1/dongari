@@ -2823,7 +2823,7 @@ MonoBehaviour:
   gauge: {fileID: 489168775}
   attackGauge: {fileID: 1506811687}
   attackChargeSpeed: 0.4
-  maxAttackPower: 200
+  maxAttackPower: 35
   attackPower: 0
   playerTransform: {fileID: 1755707714}
   gaugeOffset: {x: 0, y: 2.5, z: 0}
