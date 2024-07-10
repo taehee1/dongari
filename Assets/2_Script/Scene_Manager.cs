@@ -12,7 +12,12 @@ public class Scene_Manager : MonoBehaviour
         instance = this;
     }
 
-    public void StartScene()
+    public void PlayerDie()
+    {
+        Invoke("MainScene", 3f);
+    }
+
+    public void MainScene()
     {
         SceneManager.LoadScene("MainScene");
     }

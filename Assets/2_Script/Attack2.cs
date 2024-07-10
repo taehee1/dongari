@@ -45,6 +45,8 @@ public class Attack2 : MonoBehaviour
             {
                 Player.instance.currentHp -= 1;
                 UiManager.instance.HpUiUpdate();
+                Player.instance.currentHp -= 1;
+                UiManager.instance.HpUiUpdate();
                 Player.instance.animator.SetTrigger("Hited");
                 Player.instance.Stun();
                 Player.instance.DieCheck();

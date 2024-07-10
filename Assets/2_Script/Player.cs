@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     [Header("애니메이션")]
     public Animator animator;
 
-    [Header("효과음")]
+    [Header("사운드")]
     private AudioSource audioSource;
     public AudioClip[] clips;
 
@@ -218,7 +218,9 @@ public class Player : MonoBehaviour
             attackDmg = Gauge.instance.attackPower;
             isAttacking = true;
             hitScan.GetComponent<Collider2D>().enabled = true;
+            AttackSound();
             Invoke("AttackDone", 0.5f);
+            Invoke("HitScanOff", 0.2f);
             animator.SetTrigger("Attack");
         }
     }
@@ -235,6 +237,12 @@ public class Player : MonoBehaviour
 
     public void AttackSound()
     {
+        audioSource.clip = clips[2];
+        audioSource.Play();
+    }
+
+    public void HitSound()
+    {
         audioSource.clip = clips[1];
         audioSource.Play();
     }
@@ -242,6 +250,10 @@ public class Player : MonoBehaviour
     private void AttackDone()
     {
         isAttacking = false;
+    }
+
+    private void HitScanOff()
+    {
         hitScan.GetComponent<Collider2D>().enabled = false;
         skillHitScan.GetComponent<Collider2D>().enabled = false;
     }
@@ -252,6 +264,7 @@ public class Player : MonoBehaviour
         {
             animator.SetTrigger("Die");
             Destroy(gameObject, 2.5f);
+            Scene_Manager.instance.PlayerDie();
         }
     }
 }

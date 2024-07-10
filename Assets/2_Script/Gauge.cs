@@ -71,7 +71,7 @@ public class Gauge : MonoBehaviour
 
     void PerformAttack()
     {
-        attackPower = Mathf.Lerp(5f, maxAttackPower, currentCharge); // 공격력 계산
+        attackPower = Mathf.Lerp(2f, maxAttackPower, currentCharge); // 공격력 계산
         Debug.Log("Attack with power: " + attackPower);
         Player.instance.speed = 10;
         currentCharge = 0f;

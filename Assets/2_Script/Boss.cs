@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Boss : MonoBehaviour
 {
     [Header("Stat")]
-    public float maxHp = 100;
+    public float maxHp = 1000;
     public float currentHP = 1;
     private bool isStun = false;
     private bool isDie = false;
@@ -28,7 +28,7 @@ public class Boss : MonoBehaviour
     public int numberOfAttack2 = 1;
 
     [Header("패턴3")]
-    private bool isPattern3Triggered = false;
+    public bool isPattern3Triggered = false;
     public GameObject attack3_1;
     public GameObject attack3_2;
     public GameObject attack3_3;
@@ -50,7 +50,6 @@ public class Boss : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        isPattern3Triggered = false; // 패턴 3 트리거 초기화
     }
 
     public void PatternRandom()
@@ -58,32 +57,32 @@ public class Boss : MonoBehaviour
         if (isDie == false && isStun == false)
         {
             // 패턴 3 조건 추가 및 수정
-            if (currentHP <= 800 && currentHP >= 700 && !isPattern3Triggered)
+            if (currentHP <= 800 && currentHP >= 601 && isPattern3Triggered == false)
             {
-                Debug.Log("Pattern 3 - HP range 700-800");
-                Pattern_3();
+                Debug.Log("Pattern 3 - HP range 600-800");
                 isPattern3Triggered = true;
+                Pattern_3();
                 return;
             }
-            else if (currentHP <= 600 && currentHP >= 500 && isPattern3Triggered)
+            if (currentHP <= 600 && currentHP >= 401 && isPattern3Triggered == true)
             {
-                Debug.Log("Pattern 3 - HP range 500-600");
-                Pattern_3();
+                Debug.Log("Pattern 3 - HP range 400-600");
                 isPattern3Triggered = false;
+                Pattern_3();
                 return;
             }
-            else if (currentHP <= 400 && currentHP >= 300 && !isPattern3Triggered)
+            if (currentHP <= 400 && currentHP >= 201 && isPattern3Triggered == false)
             {
-                Debug.Log("Pattern 3 - HP range 300-400");
-                Pattern_3();
+                Debug.Log("Pattern 3 - HP range 200-400");
                 isPattern3Triggered = true;
+                Pattern_3();
                 return;
             }
-            else if (currentHP <= 200 && currentHP >= 100 && isPattern3Triggered)
+            if (currentHP <= 200 && currentHP >= 1 && isPattern3Triggered == true)
             {
-                Debug.Log("Pattern 3 - HP range 100-200");
-                Pattern_3();
+                Debug.Log("Pattern 3 - HP range 1-200");
                 isPattern3Triggered = false;
+                Pattern_3();
                 return;
             }
 
@@ -154,19 +153,20 @@ public class Boss : MonoBehaviour
 
     private void Pattern_3()
     {
-        if (currentHP <= 800 && currentHP >= 700)
+        if (currentHP <= 800 && currentHP >= 601) // 800
         {
             attack3_1.SetActive(true);
         }
-        else if(currentHP <= 600 && currentHP >= 500)
+        if (currentHP <= 600 && currentHP >= 401) // 600
         {
             attack3_2.SetActive(true);
         }
-        else if(currentHP <= 400 && currentHP >= 300)
+        if (currentHP >= 201 && currentHP <= 400) // 400
         {
+            Debug.Log("asdasd");
             attack3_3.SetActive(true);
         }
-        else if (currentHP <= 200 && currentHP >= 100)
+        if (currentHP >= 1 && currentHP <= 200) // 200
         {
             attack3_4.SetActive(true);
         }
@@ -195,8 +195,9 @@ public class Boss : MonoBehaviour
             shakeMagnitude = 4f;
             spriteRenderer.color = new Color(1f, 0.8f, 0.8f);
             currentHP -= Player.instance.attackDmg;
-            Player.instance.AttackSound();
+            Player.instance.HitSound();
             DieCheck();
+            Debug.Log($"Boss Hp : {currentHP}");
             //StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
             Invoke("MobColorReset", 0.3f);
         }

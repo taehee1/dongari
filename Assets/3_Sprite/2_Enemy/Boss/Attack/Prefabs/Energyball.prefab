@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  moveSpeed: 6
+  moveSpeed: 7
   rotationSpeed: 5
 --- !u!58 &1240830655331442554
 CircleCollider2D:

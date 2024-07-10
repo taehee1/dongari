@@ -33,7 +33,7 @@ public class BossUI : MonoBehaviour
     {
         while (Boss.instance.currentHP < Boss.instance.maxHp)
         {
-            yield return new WaitForSeconds(0.0001f);
+            yield return new WaitForSeconds(0.001f);
             Boss.instance.currentHP++;
 
             if (Boss.instance.currentHP == Boss.instance.maxHp)

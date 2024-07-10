@@ -44,13 +44,14 @@ public class Mob : MonoBehaviour
 
             if (Player.isFacingRight == true)
             {
-                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(7f, 7f, 0);
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(7f + Player.instance.attackDmg / 3, 7f + Player.instance.attackDmg / 6, 0);
             }
             else if (Player.isFacingRight == false)
             {
-                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(-7f, 7f, 0);
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(-7f - Player.instance.attackDmg / 3, 7f + Player.instance.attackDmg / 6, 0);
             }
             mobHp -= Player.instance.attackDmg;
+            Player.instance.HitSound();
             Invoke("MobColorReset", 0.3f);
             DieCheck();
         }

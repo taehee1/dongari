@@ -31,6 +31,7 @@ public class Mob2 : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         spriteRenderer.color = new Color(1f, 0.5f, 0.5f);
+        Player.instance.HitSound();
 
         if (collision.tag == "HitScan")
         {

@@ -2356,6 +2356,134 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1586994653}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &314090792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 314090794}
+  - component: {fileID: 314090793}
+  m_Layer: 0
+  m_Name: SpaceshipSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &314090793
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314090792}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3729a061bedff3049ade2e0dc22fd619, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &314090794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314090792}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 183.00948, y: 394.8693, z: -10.627478}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &386556266
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,6 +2788,8 @@ MonoBehaviour:
   - {fileID: 1015589904}
   - {fileID: 866142201}
   - {fileID: 1135737893}
+  Sounds:
+  - {fileID: 314090792}
   menu: {fileID: 1552891072}
   menuWorking: 0
 --- !u!4 &419221530
@@ -2692,8 +2822,8 @@ MonoBehaviour:
   gaugeObj: {fileID: 489168773}
   gauge: {fileID: 489168775}
   attackGauge: {fileID: 1506811687}
-  attackChargeSpeed: 0.3
-  maxAttackPower: 80
+  attackChargeSpeed: 0.4
+  maxAttackPower: 200
   attackPower: 0
   playerTransform: {fileID: 1755707714}
   gaugeOffset: {x: 0, y: 2.5, z: 0}
@@ -10987,6 +11117,7 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: c1d29258f4ea3184e99b5a976a5c15c0, type: 3}
   - {fileID: 8300000, guid: 657d656e66bb488429c3cd924195bd28, type: 3}
+  - {fileID: 8300000, guid: f73d73bc87fad144097aefa97b9e0c22, type: 3}
 --- !u!212 &1755707713
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11468,9 +11599,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1179612044}
-        m_TargetAssemblyTypeName: Scene_Manager, Assembly-CSharp
-        m_MethodName: TilteScene
+      - m_Target: {fileID: 419221529}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: Title
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12006,6 +12137,7 @@ MonoBehaviour:
   attack2Prefab: {fileID: 7188411000956421922, guid: 0b42bab2edcd32949863c2b5af74a559, type: 3}
   spawnPosition: {fileID: 1837286707}
   numberOfAttack2: 1
+  isPattern3Triggered: 0
   attack3_1: {fileID: 582344538}
   attack3_2: {fileID: 1616123565}
   attack3_3: {fileID: 545887441}
@@ -13649,6 +13781,7 @@ SceneRoots:
   - {fileID: 1758204646}
   - {fileID: 1179612045}
   - {fileID: 1111682884}
+  - {fileID: 314090794}
   - {fileID: 489352759}
   - {fileID: 1555141246}
   - {fileID: 485456732}
