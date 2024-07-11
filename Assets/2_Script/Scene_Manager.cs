@@ -22,6 +22,11 @@ public class Scene_Manager : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
+    public void CityScene()
+    {
+        SceneManager.LoadScene("CityScene");
+    }
+
     public void BossScene()
     {
         SceneManager.LoadScene("BossScene");
