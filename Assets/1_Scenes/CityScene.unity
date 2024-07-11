@@ -6169,9 +6169,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 63682308212020411, guid: a760d54128ca85548b4743aeecb9d062, type: 3}
+      propertyPath: mobHp
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 1566787511638840108, guid: a760d54128ca85548b4743aeecb9d062, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.393726
+      value: 18.979847
       objectReference: {fileID: 0}
     - target: {fileID: 1566787511638840108, guid: a760d54128ca85548b4743aeecb9d062, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6375,9 +6379,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info:
     text:
-    - "A,D\uB85C \uC88C\uC6B0\uB85C \uC6C0\uC9C1\uC77C \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+    - "\uC88C\uC6B0\uBC29\uD5A5\uD0A4(\uB610\uB294 A,D)\uB85C \uC88C\uC6B0\uB85C
+      \uC6C0\uC9C1\uC77C \uC218 \uC788\uC2B5\uB2C8\uB2E4."
     - "Spacebar \uB85C \uC810\uD504\uB97C \uD560\uC218\uC788\uACE0 \uAE38\uAC8C \uB204\uB97C\uC218\uB85D
       \uB192\uC774 \uC810\uD504\uD569\uB2C8\uB2E4"
+    - "\uD50C\uB81B\uD3FC\uC704\uC5D0 \uC788\uC744 \uB54C \uC544\uB798\uBC29\uD5A5\uD0A4(\uB610\uB294
+      S)\uB85C \uD50C\uB81B\uD3FC\uC744 \uB0B4\uB824\uAC08 \uC218 \uC788\uC2B5\uB2C8\uB2E4"
     - "Z\uD0A4\uB85C \uACF5\uACA9\uC744 \uD560\uC218\uC788\uACE0,"
     - "\uAE38\uAC8C \uB20C\uB7EC \uCC28\uC9D5\uC744\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
     - "C\uB85C \uB300\uC26C\uB97C \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."

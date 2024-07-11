@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        isFacingRight = true;
     }
 
     void Update()
