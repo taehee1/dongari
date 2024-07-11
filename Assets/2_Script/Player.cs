@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) && IsGrounded() && !isAttacking && canMove == true)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && !isAttacking && canMove == true)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             animator.SetTrigger("Jump");
