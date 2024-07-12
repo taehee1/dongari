@@ -4625,7 +4625,8 @@ MonoBehaviour:
   - {fileID: 945578822}
   - {fileID: 1003001778}
   - {fileID: 1399205802}
-  Sounds: []
+  Sounds:
+  - {fileID: 2009837822}
   menu: {fileID: 1251208954}
   menuWorking: 0
 --- !u!4 &1399813792

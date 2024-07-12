@@ -62,7 +62,7 @@ public class UiManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SoundPlay();
-        SceneManager.LoadScene("StartScene");
+        Scene_Manager.instance.TilteScene();
     }
 
     private void SoundPause()
