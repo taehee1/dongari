@@ -33,10 +33,10 @@ public class BossUI : MonoBehaviour
     {
         while (Boss.instance.currentHP < Boss.instance.maxHp)
         {
-            yield return new WaitForSeconds(0.001f);
-            Boss.instance.currentHP++;
+            yield return new WaitForSeconds(0.0001f);
+            Boss.instance.currentHP += 3;
 
-            if (Boss.instance.currentHP == Boss.instance.maxHp)
+            if (Boss.instance.currentHP >= Boss.instance.maxHp)
             {
                 Player.instance.canMove = true;
                 Boss.instance.PatternRandom();
